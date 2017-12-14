@@ -7,11 +7,12 @@ from .serializers import CourseSerializer
 from .models import Course
 
 #TODO: Create tests for views
-#TODO: Create pagination
 
 class CourseViewSet(mixins.ListModelMixin,
+                     mixins.CreateModelMixin,
                      mixins.RetrieveModelMixin,
                      mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin,
                      viewsets.GenericViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
