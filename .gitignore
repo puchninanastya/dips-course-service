@@ -1,0 +1,6 @@
+dips_course_service/__pycache__/
+course_service/__pycache__/
+course_service/migrations/__pycache__/
+course_service/tests/__pycache__/
+htmlcov/
+.coverage
