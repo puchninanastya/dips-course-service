@@ -6,8 +6,6 @@ from rest_framework import status
 from .serializers import CourseSerializer
 from .models import Course
 
-#TODO: Create tests for views
-
 class CourseViewSet(mixins.ListModelMixin,
                      mixins.CreateModelMixin,
                      mixins.RetrieveModelMixin,
