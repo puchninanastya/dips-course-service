@@ -16,11 +16,11 @@ class GetAllCoursesTestCase(TestCase):
         self.factory = APIRequestFactory()
 
         self.newCourse1 = Course.objects.create(name='course1',
-            description='desc1')
+            description='desc1', price=1000)
         self.newCourse2 = Course.objects.create(name='course2',
-            description='desc2')
+            description='desc2', price=2000)
         self.newCourse3 = Course.objects.create(name='course3',
-            description='desc3')
+            description='desc3', price=3000)
 
     def test_get_all_courses(self):
         """Test the api get courses."""
@@ -42,7 +42,7 @@ class GetSingleCourseTestCase(TestCase):
         self.factory = APIRequestFactory()
 
         self.newCourse1 = Course.objects.create(name='course1',
-            description='desc1')
+            description='desc1', price=1000)
 
         self.invalid_pk = 2
 
@@ -113,13 +113,13 @@ class CreateNewCourseTest(TestCase):
         # Check.
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-class DeleteSingleUserTest(TestCase):
+class DeleteSingleCourseTest(TestCase):
     def setUp(self):
         # Every test needs access to the request factory.
         self.factory = APIRequestFactory()
 
         self.newCourse1 = Course.objects.create(name='course1',
-            description='desc1')
+            description='desc1', price=1000)
 
         self.invalid_pk = 2
 
