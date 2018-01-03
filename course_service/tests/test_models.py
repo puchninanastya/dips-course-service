@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from course_service.models import Course
 
-class ModelTestCase(TestCase):
+class CourseModelTestCase(TestCase):
     """This class defines the test suite for the Course model."""
 
     def setUp(self):

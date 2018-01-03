@@ -91,7 +91,7 @@ class CreateNewCourseTest(TestCase):
             "price": 7000
         }
 
-    def test_get_valid_single_course(self):
+    def test_create_valid_single_course(self):
         """Test the api valid insert new course."""
         # Setup.
         url = "/courses/"
@@ -102,7 +102,7 @@ class CreateNewCourseTest(TestCase):
         # Check.
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_get_invalid_single_user(self):
+    def test_create_invalid_single_user(self):
         """Test the api invalid insert new course."""
         # Setup.
         url = "/courses/"
@@ -123,7 +123,7 @@ class DeleteSingleCourseTest(TestCase):
 
         self.invalid_pk = 2
 
-    def test_get_valid_single_course(self):
+    def test_delete_valid_single_course(self):
         """Test the api valid delete new course."""
         # Setup.
         url = "/courses/" + str(self.newCourse1.pk)
@@ -134,7 +134,7 @@ class DeleteSingleCourseTest(TestCase):
         # Check.
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    def test_get_valid_single_course(self):
+    def test_delete_valid_single_course(self):
         """Test the api valid delete new course."""
         # Setup.
         url = "/courses/" + str(self.invalid_pk)
