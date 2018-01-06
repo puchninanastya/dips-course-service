@@ -6,7 +6,11 @@ def custom_exception_handler(exc, context):
     response = exception_handler(exc, context)
 
     if response is not None:
-        response.data['error'] = response.data['detail']
-        del response.data['detail']
+        if 'detail' in response.data:
+            response.data['error'] = response.data['detail']
+            del response.data['detail']
+        else:
+            error_msg = {'error' : response.data}
+            response.data = error_msg
 
     return response
