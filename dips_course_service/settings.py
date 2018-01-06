@@ -125,5 +125,6 @@ STATIC_URL = '/static/'
 # http://www.django-rest-framework.org
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5
+    'PAGE_SIZE': 5,
+    'EXCEPTION_HANDLER': 'course_service.utils.custom_exception_handler'
 }
