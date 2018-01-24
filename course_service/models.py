@@ -1,5 +1,18 @@
 from django.db import models
 
+class Token(models.Model):
+    client_id = models.CharField(max_length=40)
+    client_secret = models.CharField(max_length=128)
+    token = models.CharField(max_length=30, null=True)
+    expires = models.DateTimeField(null=True)
+
+    class Meta:
+        verbose_name = "Token"
+        verbose_name_plural = "Tokens"
+
+    def __str__(self):
+        return "Toker for cliend id: {}".format(self.client_id)
+
 class Course(models.Model):
     name = models.CharField(
         max_length=60,

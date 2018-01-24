@@ -10,4 +10,5 @@ router.register(r'courses', views.CourseViewSet)
 # Additionally, we include the login URLs for the browsable API.
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^create-auth-token/$', views.TokenView.as_view(), name='create-token'),
 ]
