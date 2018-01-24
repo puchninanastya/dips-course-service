@@ -1,19 +1,20 @@
 from django.utils import timezone
-from rest_framework import permissions
+from rest_framework import authentication, exceptions
 from .models import Token
 
-class HasValidClientToken(permissions.BasePermission):
-    def has_permission(self, request, view):
+class AppTokenAuthentication(authentication.BaseAuthentication):
+    def authenticate(self, request):
         token = str(request.META.get('HTTP_AUTHORIZATION')).split()[-1]
-        if self.is_token_valid(token):
-            return True
-        return False
-
-    def is_token_valid(self, token):
+        if token == 'None':
+            raise exceptions.AuthenticationFailed('No token')
         try:
             tok = Token.objects.get(token=token)
         except Token.DoesNotExist:
-            return False
+            raise exceptions.AuthenticationFailed('No app with such token')
+
         if tok.expires < timezone.now():
-            return False
-        return True
+            raise exceptions.AuthenticationFailed('Token expired')
+        return (None, None)
+
+    def authenticate_header(self, request):
+        return 'AppTokenAuthentication'

@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from .serializers import CourseSerializer
 from .models import Course, Token
-from .token_auth import HasValidClientToken
+from .token_auth import AppTokenAuthentication
 
 import binascii
 import os
@@ -24,7 +24,6 @@ class TokenView(APIView):
         new_token = binascii.hexlify(os.urandom(15)).decode('ascii')
         tok.token = new_token
         tok.expires = timezone.now() + timezone.timedelta(minutes=1)
-        print(tok.expires)
         tok.save()
         return Response({'token': new_token})
 
@@ -40,4 +39,4 @@ class CourseViewSet(mixins.ListModelMixin,
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = ( HasValidClientToken, )
+    authentication_classes = (AppTokenAuthentication, )
